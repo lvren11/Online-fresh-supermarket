@@ -1,0 +1,30 @@
+每个main.py都可以替换成Algorithm1.py或Algorithm2.py
+train summe 1000：
+python main.py -d datasets/eccv16_dataset_summe_google_pool5_feature1000.h5 -s datasets/summe_splits.json -m summe --gpu 0 --save-dir log/summe-split0 --split-id 0 --verbose --input-dim 1000 --max-epoch 10 --meta_step 6 --attention True
+
+train summe 1024:
+python main.py -d datasets/eccv16_dataset_summe_google_pool5.h5 -s datasets/summe_splits.json -m summe --gpu 0 --save-dir log/summe-split0 --split-id 0 --verbose --input-dim 1024 --max-epoch 10 --meta_step 6 --attention True
+
+train tvsum 1000(MAML重写版本，不知道为啥只能用cpu)：
+python main.py -d datasets/eccv16_dataset_tvsum_google_pool5_feature1000.h5 -s datasets/tvsum_splits.json -m tvsum --use-cpu --save-dir log/summe-split0 --split-id 0 --verbose --input-dim 1000 --max-epoch 10 --meta_step 6 --attention True
+
+train tvsum 1000(原始版本)：
+python main.py -d datasets/eccv16_dataset_tvsum_google_pool5_feature1000.h5 -s datasets/tvsum_splits.json -m tvsum --gpu 0 --save-dir log/summe-split0 --split-id 0 --verbose --input-dim 1000 --max-epoch 10 --meta_step 6  --bsz 10 （--attention）
+
+train tvsum 1024：
+python main.py -d datasets/eccv16_dataset_tvsum_google_pool5.h5 -s datasets/tvssum_splits.json -m tvsum --gpu 0 --save-dir log/summe-split0 --split-id 0 --verbose --input-dim 1024 --max-epoch 10 --meta_step 6 --attention True
+
+test：
+python main.py -d datasets/eccv16_dataset_summe_google_pool5_feature1000.h5 -s datasets/summe_splits.json -m summe --gpu 0 --save-dir log/summe-split0 --split-id 1 --evaluate --resume log/summe-split0/model_epoch60.pth.tar --verbose --save-results --attention True
+
+test MAML tvsum(use-cpu):
+python main.py -d datasets/eccv16_dataset_summe_google_pool5_feature1000.h5 -s datasets/summe_splits.json -m summe --use-cpu --save-dir log/summe-split0 --split-id 1 --evaluate --resume log/summe-split0/model_epoch60.pth.tar --verbose --save-results --attention True
+
+无降采样15166.59秒
+降采样后3659.94
+
+1.创新点提前
+2.图片大小
+3.页眉
+4.第三章 模型描述 输入输出
+5.模型分析
